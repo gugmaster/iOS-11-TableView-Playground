@@ -12,21 +12,25 @@ class ViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 	
-	//let specialOffset: CGFloat = -20
+	// iOS 10 offset
+	let specialOffset: CGFloat = 0
 	
-	let topInset: CGFloat = 75 //- 20
+	// iOS 11 offset
+//	let specialOffset: CGFloat = -20
 	
+	let topInset: CGFloat = 75
 	
+
 	// MARK: - Offsets for toolbar (iPhone)
 	
 	/// The content offset which hides the toolbar
 	fileprivate var offsetToolbarHidden: CGFloat {
-		return -tableView.contentInset.top + tableView.tableHeaderView!.bounds.height //- 20
+		return -tableView.contentInset.top + tableView.tableHeaderView!.bounds.height + specialOffset
 	}
 	
 	/// The content offset which shows the toolbar
 	fileprivate var offsetToolbarShown: CGFloat {
-		return -tableView.contentInset.top //- 20
+		return -tableView.contentInset.top + specialOffset
 	}
 		
 	override func viewDidLoad() {
@@ -37,7 +41,7 @@ class ViewController: UIViewController {
 		
 		tableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: UIControlEvents.valueChanged)
 
-		self.tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+		self.tableView.contentInset = UIEdgeInsets(top: topInset + specialOffset, left: 0, bottom: 0, right: 0)
 		
 		self.navigationController?.navigationBar.isHidden = true
 		
@@ -45,34 +49,17 @@ class ViewController: UIViewController {
 		tableView.refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		
-		super.viewWillAppear(animated)
-		
-		
-	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
-
-
-	
 	@objc func refresh(_ sender: UIRefreshControl) {
 		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			
-			
+			// Simulate refreshing and reloading
 			self.tableView.refreshControl?.endRefreshing()
 			
 			let offset = CGPoint(x: 0, y: -self.topInset +  44)
 			
 			self.tableView.setContentOffset(offset, animated: true)
-			
 		}
-
-		
 	}
 }
 
@@ -81,7 +68,6 @@ extension ViewController: UITableViewDataSource {
 	public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
 		return 100
-		
 	}
 	
 	
@@ -93,9 +79,7 @@ extension ViewController: UITableViewDataSource {
 		cell.backgroundColor = UIColor.green
 		
 		return cell
-		
 	}
-	
 }
 
 
