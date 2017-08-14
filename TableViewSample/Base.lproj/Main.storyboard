@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ww7-1H-V05">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ww7-1H-V05">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,6 +73,10 @@
         <scene sceneID="yMJ-n6-h01">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="Mdi-Ce-TUZ" customClass="ViewController" customModule="TableViewSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u22-5g-IlJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="YgA-co-qiI"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bau-Z4-wpz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,14 +115,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rng-Xx-8DP" firstAttribute="top" secondItem="Bau-Z4-wpz" secondAttribute="top" id="IXz-0S-295"/>
-                            <constraint firstItem="Rng-Xx-8DP" firstAttribute="trailing" secondItem="qL2-lr-FUF" secondAttribute="trailing" id="Nul-gp-5El"/>
-                            <constraint firstItem="Rng-Xx-8DP" firstAttribute="leading" secondItem="qL2-lr-FUF" secondAttribute="leading" id="Sum-De-yGv"/>
-                            <constraint firstItem="mp0-i9-Ien" firstAttribute="bottom" secondItem="qL2-lr-FUF" secondAttribute="bottom" id="dzN-53-W6q"/>
-                            <constraint firstItem="mp0-i9-Ien" firstAttribute="trailing" secondItem="qL2-lr-FUF" secondAttribute="trailing" id="fRE-Mh-tMR"/>
-                            <constraint firstItem="mp0-i9-Ien" firstAttribute="leading" secondItem="qL2-lr-FUF" secondAttribute="leading" id="kwO-fj-UNF"/>
+                            <constraint firstItem="Rng-Xx-8DP" firstAttribute="trailing" secondItem="Bau-Z4-wpz" secondAttribute="trailing" id="Nul-gp-5El"/>
+                            <constraint firstItem="Rng-Xx-8DP" firstAttribute="leading" secondItem="Bau-Z4-wpz" secondAttribute="leading" id="Sum-De-yGv"/>
+                            <constraint firstItem="mp0-i9-Ien" firstAttribute="bottom" secondItem="YgA-co-qiI" secondAttribute="top" id="dzN-53-W6q"/>
+                            <constraint firstItem="mp0-i9-Ien" firstAttribute="trailing" secondItem="Bau-Z4-wpz" secondAttribute="trailing" id="fRE-Mh-tMR"/>
+                            <constraint firstItem="mp0-i9-Ien" firstAttribute="leading" secondItem="Bau-Z4-wpz" secondAttribute="leading" id="kwO-fj-UNF"/>
                             <constraint firstItem="mp0-i9-Ien" firstAttribute="top" secondItem="Bau-Z4-wpz" secondAttribute="top" id="yK4-5n-f4u"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qL2-lr-FUF"/>
                     </view>
                     <navigationItem key="navigationItem" id="cW4-Ev-HqY"/>
                     <connections>
