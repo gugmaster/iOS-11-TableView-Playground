@@ -12,11 +12,6 @@ class ViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 	
-	// iOS 10 offset
-	let specialOffset: CGFloat = 0
-	
-	// iOS 11 offset
-//	let specialOffset: CGFloat = -20
 	
 	let topInset: CGFloat = 75
 	
@@ -25,12 +20,12 @@ class ViewController: UIViewController {
 	
 	/// The content offset which hides the toolbar
 	fileprivate var offsetToolbarHidden: CGFloat {
-		return -tableView.contentInset.top + tableView.tableHeaderView!.bounds.height + specialOffset
+		return -tableView.contentInset.top + tableView.tableHeaderView!.bounds.height
 	}
 	
 	/// The content offset which shows the toolbar
 	fileprivate var offsetToolbarShown: CGFloat {
-		return -tableView.contentInset.top + specialOffset
+		return -tableView.contentInset.top //+ specialOffset
 	}
 		
 	override func viewDidLoad() {
@@ -41,12 +36,17 @@ class ViewController: UIViewController {
 		
 		tableView.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: UIControlEvents.valueChanged)
 
-		self.tableView.contentInset = UIEdgeInsets(top: topInset + specialOffset, left: 0, bottom: 0, right: 0)
+		self.tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
 		
 		self.navigationController?.navigationBar.isHidden = true
 		
 		tableView.refreshControl = UIRefreshControl()
 		tableView.refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+		
+		// This is now the important on iOS 11 to get the same behavior like on iOS 10
+		if #available(iOS 11, *) {
+			tableView.contentInsetAdjustmentBehavior = .never
+		}
 	}
 	
 	@objc func refresh(_ sender: UIRefreshControl) {
